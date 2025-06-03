@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Study Notes - Campus Connect</title>
+  <link rel="stylesheet" href="notes.css"/>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet"/>
+</head>
+<body>
+    <header>
+        <nav class="container">
+          <a href="index.html" class="logo-link">
+            <div class="logo">
+              <img src="campus-connect-logo.jpg" alt="Campus Connect Logo">
+              <h2 style=" font-style: italic;">Campus Connect</h2>
+            </div>
+          </a>
+          <div class="auth-buttons">
+            <a href="dashboard.html"><button><i class="fas fa-th-large"></i> Dashboard</button></a>
+            <a href="index.html"><button><i class="fas fa-home"></i> Home</button></a>
+            <a href="notification.html"><button><i class="fas fa-bell"></i> Notifications</button></a>
+          </div>
+        </nav>
+    </header>
+
+  <section class="page-header">
+    <div class="container">
+      <h2><i class="fas fa-book"></i> Study Notes</h2>
+      <p>Access and share study materials with your fellow students</p>
+    </div>
+  </section>
+
+  <main class="container">
+    <div class="notes-controls fade-in">
+      <div class="notes-filter">
+        <button class="active" data-filter="all">All Notes</button>
+        <button data-filter="my-notes">My Notes</button>
+        <button data-filter="2022">2022 Batch</button>
+        <button data-filter="2021">2021 Batch</button>
+        <button data-filter="2020">2020 Batch</button>
+        <button data-filter="2019">2019 Batch</button>
+      </div>
+      <div class="notes-actions">
+        <button class="upload-btn">
+          <a href="upload_notes.html" style="text-decoration: none; color: inherit;">
+            <i class="fas fa-upload"></i> Upload Notes
+          </a>
+        </button>
+        <div class="search-box">
+          <i class="fas fa-search"></i>
+          <input type="text" placeholder="Search notes, subjects..." id="searchInput">
+        </div>
+      </div>
+    </div>
+
+    <h3 class="section-title fade-in">My Uploaded Notes</h3>
+
+    <div class="notes-list">
+      <div class="note-card fade-in" data-type="my-notes cse 2022">
+        <div class="note-header">
+          <div class="subject-badge cse">
+            <i class="fas fa-code"></i>
+            <span>CSE</span>
+          </div>
+          <span class="owner-badge">My Upload</span>
+        </div>
+        <div class="note-content">
+          <h3>Data Structures & Algorithms</h3>
+          <p>Complete notes covering arrays, linked lists, stacks, queues, trees, graphs, and sorting algorithms with examples and implementations.</p>
+          <div class="note-meta">
+            <span><i class="fas fa-calendar"></i> Uploaded 3 days ago</span>
+            <span><i class="fas fa-download"></i> 45 downloads</span>
+            <span><i class="fas fa-file-pdf"></i> PDF • 2.3 MB</span>
+          </div>
+          <div class="note-tags">
+            <span class="tag">Data Structures</span>
+            <span class="tag">Algorithms</span>
+            <span class="tag">Programming</span>
+          </div>
+        </div>
+        <div class="note-actions">
+          <button class="edit-btn"><i class="fas fa-edit"></i> Edit</button>
+          <button class="download-btn"><i class="fas fa-download"></i> Download</button>
+          <button class="delete-btn"><i class="fas fa-trash"></i> Delete</button>
+        </div>
+      </div>
+
+      <div class="note-card fade-in" data-type="my-notes cse 2022">
+        <div class="note-header">
+          <div class="subject-badge cse">
+            <i class="fas fa-database"></i>
+            <span>CSE</span>
+          </div>
+          <span class="owner-badge">My Upload</span>
+        </div>
+        <div class="note-content">
+          <h3>Database Management Systems</h3>
+          <p>Comprehensive guide to DBMS concepts including ER diagrams, normalization, SQL queries, transactions, and database design principles.</p>
+          <div class="note-meta">
+            <span><i class="fas fa-calendar"></i> Uploaded 1 week ago</span>
+            <span><i class="fas fa-download"></i> 32 downloads</span>
+            <span><i class="fas fa-file-pdf"></i> PDF • 1.8 MB</span>
+          </div>
+          <div class="note-tags">
+            <span class="tag">Database</span>
+            <span class="tag">SQL</span>
+            <span class="tag">Normalization</span>
+          </div>
+        </div>
+        <div class="note-actions">
+          <button class="edit-btn"><i class="fas fa-edit"></i> Edit</button>
+          <button class="download-btn"><i class="fas fa-download"></i> Download</button>
+          <button class="delete-btn"><i class="fas fa-trash"></i> Delete</button>
+        </div>
+      </div>
+
+      <h3 class="section-title fade-in">Browse Notes by Subject</h3>
+
+      <div class="note-card fade-in" data-type="cse 2022">
+        <div class="note-header">
+          <div class="subject-badge cse">
+            <i class="fas fa-microchip"></i>
+            <span>CSE</span>
+          </div>
+          <div class="batch-badge">2022</div>
+        </div>
+        <div class="note-content">
+          <h3>Computer Organization & Architecture</h3>
+          <p>Detailed notes on CPU design, memory hierarchy, instruction sets, pipelining, and computer architecture fundamentals.</p>
+          <div class="note-meta">
+            <span><i class="fas fa-user"></i> By Sarah Johnson</span>
+            <span><i class="fas fa-download"></i> 78 downloads</span>
+            <span><i class="fas fa-file-pdf"></i> PDF • 3.1 MB</span>
+          </div>
+          <div class="note-tags">
+            <span class="tag">CPU Design</span>
+            <span class="tag">Memory</span>
+            <span class="tag">Assembly</span>
+          </div>
+        </div>
+        <div class="note-actions">
+          <button class="bookmark-btn"><i class="fas fa-bookmark"></i> Bookmark</button>
+          <button class="download-btn"><i class="fas fa-download"></i> Download</button>
+        </div>
+      </div>
+
+      <div class="note-card fade-in" data-type="ece 2021">
+        <div class="note-header">
+          <div class="subject-badge ece">
+            <i class="fas fa-bolt"></i>
+            <span>ECE</span>
+          </div>
+          <div class="batch-badge">2021</div>
+        </div>
+        <div class="note-content">
+          <h3>Digital Signal Processing</h3>
+          <p>Complete coverage of DSP fundamentals including sampling, DFT, FFT, digital filters, and signal analysis techniques.</p>
+          <div class="note-meta">
+            <span><i class="fas fa-user"></i> By Michael Chen</span>
+            <span><i class="fas fa-download"></i> 56 downloads</span>
+            <span><i class="fas fa-file-pdf"></i> PDF • 2.7 MB</span>
+          </div>
+          <div class="note-tags">
+            <span class="tag">DSP</span>
+            <span class="tag">Filters</span>
+            <span class="tag">Signals</span>
+          </div>
+        </div>
+        <div class="note-actions">
+          <button class="bookmark-btn"><i class="fas fa-bookmark"></i> Bookmark</button>
+          <button class="download-btn"><i class="fas fa-download"></i> Download</button>
+        </div>
+      </div>
+
+      <div class="note-card fade-in" data-type="me 2020">
+        <div class="note-header">
+          <div class="subject-badge me">
+            <i class="fas fa-cog"></i>
+            <span>ME</span>
+          </div>
+          <div class="batch-badge">2020</div>
+        </div>
+        <div class="note-content">
+          <h3>Thermodynamics</h3>
+          <p>Comprehensive notes on laws of thermodynamics, heat engines, refrigeration cycles, and energy conversion systems.</p>
+          <div class="note-meta">
+            <span><i class="fas fa-user"></i> By David Wilson</span>
+            <span><i class="fas fa-download"></i> 89 downloads</span>
+            <span><i class="fas fa-file-pdf"></i> PDF • 4.2 MB</span>
+          </div>
+          <div class="note-tags">
+            <span class="tag">Heat Transfer</span>
+            <span class="tag">Energy</span>
+            <span class="tag">Cycles</span>
+          </div>
+        </div>
+        <div class="note-actions">
+          <button class="bookmark-btn"><i class="fas fa-bookmark"></i> Bookmark</button>
+          <button class="download-btn"><i class="fas fa-download"></i> Download</button>
+        </div>
+      </div>
+
+      <div class="note-card fade-in" data-type="ce 2021">
+        <div class="note-header">
+          <div class="subject-badge ce">
+            <i class="fas fa-building"></i>
+            <span>CE</span>
+          </div>
+          <div class="batch-badge">2021</div>
+        </div>
+        <div class="note-content">
+          <h3>Structural Analysis</h3>
+          <p>Detailed analysis of beams, frames, trusses, and structural design principles with solved examples and case studies.</p>
+          <div class="note-meta">
+            <span><i class="fas fa-user"></i> By Emily Rodriguez</span>
+            <span><i class="fas fa-download"></i> 43 downloads</span>
+            <span><i class="fas fa-file-pdf"></i> PDF • 3.5 MB</span>
+          </div>
+          <div class="note-tags">
+            <span class="tag">Structures</span>
+            <span class="tag">Analysis</span>
+            <span class="tag">Design</span>
+          </div>
+        </div>
+        <div class="note-actions">
+          <button class="bookmark-btn"><i class="fas fa-bookmark"></i> Bookmark</button>
+          <button class="download-btn"><i class="fas fa-download"></i> Download</button>
+        </div>
+      </div>
+
+      <div class="note-card fade-in" data-type="eee 2019">
+        <div class="note-header">
+          <div class="subject-badge eee">
+            <i class="fas fa-plug"></i>
+            <span>EEE</span>
+          </div>
+          <div class="batch-badge">2019</div>
+        </div>
+        <div class="note-content">
+          <h3>Power Systems</h3>
+          <p>Comprehensive coverage of power generation, transmission, distribution, and protection systems with practical applications.</p>
+          <div class="note-meta">
+            <span><i class="fas fa-user"></i> By James Anderson</span>
+            <span><i class="fas fa-download"></i> 67 downloads</span>
+            <span><i class="fas fa-file-pdf"></i> PDF • 2.9 MB</span>
+          </div>
+          <div class="note-tags">
+            <span class="tag">Power</span>
+            <span class="tag">Transmission</span>
+            <span class="tag">Protection</span>
+          </div>
+        </div>
+        <div class="note-actions">
+          <button class="bookmark-btn"><i class="fas fa-bookmark"></i> Bookmark</button>
+          <button class="download-btn"><i class="fas fa-download"></i> Download</button>
+        </div>
+      </div>
+
+      <div class="note-card fade-in" data-type="cse 2021">
+        <div class="note-header">
+          <div class="subject-badge cse">
+            <i class="fas fa-network-wired"></i>
+            <span>CSE</span>
+          </div>
+          <div class="batch-badge">2021</div>
+        </div>
+        <div class="note-content">
+          <h3>Computer Networks</h3>
+          <p>Network protocols, OSI model, TCP/IP, routing algorithms, network security, and modern networking technologies.</p>
+          <div class="note-meta">
+            <span><i class="fas fa-user"></i> By Lisa Thompson</span>
+            <span><i class="fas fa-download"></i> 52 downloads</span>
+            <span><i class="fas fa-file-pdf"></i> PDF • 2.1 MB</span>
+          </div>
+          <div class="note-tags">
+            <span class="tag">Networking</span>
+            <span class="tag">Protocols</span>
+            <span class="tag">Security</span>
+          </div>
+        </div>
+        <div class="note-actions">
+          <button class="bookmark-btn"><i class="fas fa-bookmark"></i> Bookmark</button>
+          <button class="download-btn"><i class="fas fa-download"></i> Download</button>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Empty state (hidden by default) -->
+    <div class="no-notes" style="display: none;">
+      <i class="fas fa-book-open"></i>
+      <h3>No Notes Found</h3>
+      <p>There are no notes matching your search criteria. Try different keywords or upload your own notes.</p>
+    </div>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Campus Connect. All rights reserved.</p>
+  </footer>
+
+  <script>
+    // Filter notes
+    const filterButtons = document.querySelectorAll('.notes-filter button');
+    const notes = document.querySelectorAll('.note-card');
+    const noNotesElement = document.querySelector('.no-notes');
+    const sectionTitles = document.querySelectorAll('.section-title');
+    const searchInput = document.getElementById('searchInput');
+
+    filterButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        // Remove active class from all buttons
+        filterButtons.forEach(btn => btn.classList.remove('active'));
+        
+        // Add active class to clicked button
+        button.classList.add('active');
+        
+        const filter = button.getAttribute('data-filter');
+        filterNotes(filter, searchInput.value);
+      });
+    });
+
+    // Search functionality
+    searchInput.addEventListener('input', (e) => {
+      const activeFilter = document.querySelector('.notes-filter button.active').getAttribute('data-filter');
+      filterNotes(activeFilter, e.target.value);
+    });
+
+    function filterNotes(filter, searchTerm) {
+      let visibleCount = 0;
+      
+      notes.forEach(note => {
+        const types = note.getAttribute('data-type').split(' ');
+        const noteText = note.textContent.toLowerCase();
+        const matchesFilter = filter === 'all' || types.includes(filter);
+        const matchesSearch = !searchTerm || noteText.includes(searchTerm.toLowerCase());
+        
+        if (matchesFilter && matchesSearch) {
+          note.style.display = 'flex';
+          visibleCount++;
+        } else {
+          note.style.display = 'none';
+        }
+      });
+      
+      // Handle section titles visibility
+      if (filter === 'my-notes') {
+        sectionTitles[0].style.display = 'block';
+        sectionTitles[1].style.display = 'none';
+      } else if (filter === 'all' && !searchTerm) {
+        sectionTitles[0].style.display = 'block';
+        sectionTitles[1].style.display = 'block';
+      } else {
+        sectionTitles[0].style.display = 'none';
+        sectionTitles[1].style.display = 'block';
+      }
+      
+      // Show empty state if no notes match filter
+      if (visibleCount === 0) {
+        noNotesElement.style.display = 'block';
+      } else {
+        noNotesElement.style.display = 'none';
+      }
+    }
+
+    // Note action buttons
+    document.addEventListener('click', function(e) {
+      if (e.target.closest('.download-btn')) {
+        const noteTitle = e.target.closest('.note-card').querySelector('h3').textContent;
+        alert(`Downloading: ${noteTitle}`);
+      }
+      
+      if (e.target.closest('.bookmark-btn')) {
+        const btn = e.target.closest('.bookmark-btn');
+        const icon = btn.querySelector('i');
+        if (icon.classList.contains('fas')) {
+          icon.classList.remove('fas');
+          icon.classList.add('far');
+          btn.innerHTML = '<i class="far fa-bookmark"></i> Bookmark';
+        } else {
+          icon.classList.remove('far');
+          icon.classList.add('fas');
+          btn.innerHTML = '<i class="fas fa-bookmark"></i> Bookmarked';
+        }
+      }
+      
+      if (e.target.closest('.upload-btn')) {
+        alert('Upload functionality would open a file picker and upload form.');
+      }
+      
+      if (e.target.closest('.edit-btn')) {
+        const noteTitle = e.target.closest('.note-card').querySelector('h3').textContent;
+        alert(`Edit functionality for: ${noteTitle}`);
+      }
+      
+      if (e.target.closest('.delete-btn')) {
+        const noteTitle = e.target.closest('.note-card').querySelector('h3').textContent;
+        if (confirm(`Are you sure you want to delete: ${noteTitle}?`)) {
+          e.target.closest('.note-card').style.display = 'none';
+        }
+      }
+    });
+    
+    // Animation for page elements
+    const faders = document.querySelectorAll('.fade-in');
+    const appearOptions = {
+      threshold: 0.2,
+      rootMargin: "0px 0px -100px 0px"
+    };
+
+    const appearOnScroll = new IntersectionObserver(function(entries, observer) {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      });
+    }, appearOptions);
+
+    faders.forEach(fader => {
+      appearOnScroll.observe(fader);
+      // Add slight delay to each item for cascade effect
+      const index = Array.from(faders).indexOf(fader);
+      fader.style.transitionDelay = `${index * 0.1}s`;
+    });
+  </script>
+</body>
+</html>
