@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Upload Notes - Campus Connect</title>
+  <link rel="stylesheet" href="upload_notes.css"/>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet"/>
+  <style>
+    /* Additional styles for upload form */
+    .upload-form {
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+      padding: 30px;
+      margin: 30px 0;
+      border: 1px solid #f0f0f0;
+    }
+
+    .form-group {
+      margin-bottom: 25px;
+    }
+
+    .form-group label {
+      display: block;
+      font-weight: 600;
+      color: #333;
+      margin-bottom: 8px;
+      font-size: 14px;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      padding: 12px 15px;
+      border: 2px solid #e0e0e0;
+      border-radius: 8px;
+      font-size: 14px;
+      transition: all 0.3s ease;
+      font-family: inherit;
+    }
+
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: #1e3d58;
+      box-shadow: 0 0 0 3px rgba(30, 61, 88, 0.1);
+    }
+
+    .form-group textarea {
+      resize: vertical;
+      min-height: 100px;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    .file-upload {
+      position: relative;
+      display: inline-block;
+      width: 100%;
+    }
+
+    .file-input {
+      position: absolute;
+      left: -9999px;
+    }
+
+    .file-label {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 40px 20px;
+      border: 2px dashed #1e3d58;
+      border-radius: 8px;
+      background: #f8f9fa;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-align: center;
+      color: #1e3d58;
+    }
+
+    .file-label:hover {
+      background: #e8f1f6;
+      border-color: #156b8a;
+    }
+
+    .file-label.has-file {
+      background: #e8f1f6;
+      border-color: #28a745;
+      color: #28a745;
+    }
+
+    .file-info {
+      margin-top: 10px;
+      padding: 10px;
+      background: #e8f1f6;
+      border-radius: 5px;
+      font-size: 13px;
+      color: #1e3d58;
+      display: none;
+    }
+
+    .tags-input {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      min-height: 40px;
+      padding: 8px;
+      border: 2px solid #e0e0e0;
+      border-radius: 8px;
+      cursor: text;
+    }
+
+    .tags-input:focus-within {
+      border-color: #1e3d58;
+      box-shadow: 0 0 0 3px rgba(30, 61, 88, 0.1);
+    }
+
+    .tag-item {
+      background: #1e3d58;
+      color: white;
+      padding: 4px 10px;
+      border-radius: 12px;
+      font-size: 12px;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .tag-remove {
+      cursor: pointer;
+      opacity: 0.7;
+    }
+
+    .tag-remove:hover {
+      opacity: 1;
+    }
+
+    .tag-input {
+      border: none;
+      outline: none;
+      flex: 1;
+      min-width: 100px;
+      font-size: 14px;
+    }
+
+    .form-actions {
+      display: flex;
+      gap: 15px;
+      justify-content: flex-end;
+      margin-top: 30px;
+      padding-top: 20px;
+      border-top: 1px solid #e0e0e0;
+    }
+
+    .btn {
+      padding: 12px 25px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn-primary {
+      background: #1e3d58;
+      color: white;
+    }
+
+    .btn-primary:hover {
+      background: #156b8a;
+      transform: translateY(-2px);
+    }
+
+    .btn-secondary {
+      background: #6c757d;
+      color: white;
+    }
+
+    .btn-secondary:hover {
+      background: #5a6268;
+      transform: translateY(-2px);
+    }
+
+    .preview-section {
+      background: #f8f9fa;
+      border-radius: 8px;
+      padding: 20px;
+      margin-top: 20px;
+      border: 1px solid #e0e0e0;
+    }
+
+    .preview-title {
+      font-size: 16px;
+      font-weight: 600;
+      color: #333;
+      margin-bottom: 15px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .note-preview {
+      background: white;
+      border-radius: 8px;
+      border: 1px solid #e0e0e0;
+      overflow: hidden;
+    }
+
+    @media (max-width: 768px) {
+      .form-row {
+        grid-template-columns: 1fr;
+        gap: 15px;
+      }
+      
+      .form-actions {
+        flex-direction: column;
+      }
+      
+      .upload-form {
+        padding: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+          <a href="index.html" class="logo-link">
+            <div class="logo">
+              <img src="campus-connect-logo.jpg" alt="Campus Connect Logo">
+              <h2 style=" font-style: italic;">Campus Connect</h2>
+            </div>
+          </a>
+          <div class="auth-buttons">
+            <a href="dashboard.html"><button><i class="fas fa-th-large"></i> Dashboard</button></a>
+            <a href="notes.html"><button><i class="fas fa-book"></i> Notes</button></a>
+            <a href="notification.html"><button><i class="fas fa-bell"></i> Notifications</button></a>
+          </div>
+        </nav>
+    </header>
+
+  <section class="page-header">
+    <div class="container">
+      <h2><i class="fas fa-upload"></i> Upload Study Notes</h2>
+      <p>Share your knowledge with fellow students by uploading your study materials</p>
+    </div>
+  </section>
+
+  <main class="container">
+    <form class="upload-form fade-in" id="uploadForm">
+      <div class="form-group">
+        <label for="noteTitle">
+          <i class="fas fa-heading"></i> Note Title *
+        </label>
+        <input type="text" id="noteTitle" name="noteTitle" placeholder="e.g., Data Structures & Algorithms" required>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="subject">
+            <i class="fas fa-book"></i> Subject *
+          </label>
+          <select id="subject" name="subject" required>
+            <option value="">Select Subject</option>
+            <option value="cse">Computer Science Engineering (CSE)</option>
+            <option value="ece">Electronics & Communication (ECE)</option>
+            <option value="me">Mechanical Engineering (ME)</option>
+            <option value="ce">Civil Engineering (CE)</option>
+            <option value="eee">Electrical & Electronics (EEE)</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="batch">
+            <i class="fas fa-graduation-cap"></i> Batch Year *
+          </label>
+          <select id="batch" name="batch" required>
+            <option value="">Select Batch</option>
+            <option value="2024">2024</option>
+            <option value="2023">2023</option>
+            <option value="2022">2022</option>
+            <option value="2021">2021</option>
+            <option value="2020">2020</option>
+            <option value="2019">2019</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="description">
+          <i class="fas fa-align-left"></i> Description *
+        </label>
+        <textarea id="description" name="description" placeholder="Provide a detailed description of the content covered in these notes..." required></textarea>
+      </div>
+
+      <div class="form-group">
+        <label>
+          <i class="fas fa-file-upload"></i> Upload File *
+        </label>
+        <div class="file-upload">
+          <input type="file" id="fileInput" name="file" class="file-input" accept=".pdf,.doc,.docx,.ppt,.pptx" required>
+          <label for="fileInput" class="file-label" id="fileLabel">
+            <i class="fas fa-cloud-upload-alt"></i>
+            <div>
+              <div style="font-weight: 600;">Click to upload or drag and drop</div>
+              <div style="font-size: 12px; opacity: 0.7;">PDF, DOC, DOCX, PPT, PPTX (Max 10MB)</div>
+            </div>
+          </label>
+          <div class="file-info" id="fileInfo"></div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>
+          <i class="fas fa-tags"></i> Tags
+        </label>
+        <div class="tags-input" id="tagsInput">
+          <input type="text" class="tag-input" placeholder="Type a tag and press Enter..." id="tagInputField">
+        </div>
+        <small style="color: #666; font-size: 12px;">Add relevant tags to help others find your notes easily</small>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="semester">
+            <i class="fas fa-calendar-alt"></i> Semester
+          </label>
+          <select id="semester" name="semester">
+            <option value="">Select Semester</option>
+            <option value="1">1st Semester</option>
+            <option value="2">2nd Semester</option>
+            <option value="3">3rd Semester</option>
+            <option value="4">4th Semester</option>
+            <option value="5">5th Semester</option>
+            <option value="6">6th Semester</option>
+            <option value="7">7th Semester</option>
+            <option value="8">8th Semester</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="courseCode">
+            <i class="fas fa-code"></i> Course Code
+          </label>
+          <input type="text" id="courseCode" name="courseCode" placeholder="e.g., CSE301, ECE204">
+        </div>
+      </div>
+
+      <div class="preview-section" id="previewSection" style="display: none;">
+        <div class="preview-title">
+          <i class="fas fa-eye"></i> Preview
+        </div>
+        <div class="note-preview">
+          <div class="note-header">
+            <div class="subject-badge" id="previewSubject">
+              <i class="fas fa-book"></i>
+              <span>Subject</span>
+            </div>
+            <span class="owner-badge">My Upload</span>
+          </div>
+          <div class="note-content">
+            <h3 id="previewTitle">Note Title</h3>
+            <p id="previewDescription">Note description will appear here...</p>
+            <div class="note-meta">
+              <span><i class="fas fa-calendar"></i> Uploading now</span>
+              <span><i class="fas fa-file-pdf"></i> <span id="previewFileType">PDF</span> • <span id="previewFileSize">0 MB</span></span>
+            </div>
+            <div class="note-tags" id="previewTags">
+              <!-- Tags will be populated dynamically -->
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-actions">
+        <button type="button" class="btn btn-secondary" onclick="window.location.href='notes.html'">
+          <i class="fas fa-times"></i> Cancel
+        </button>
+        <button type="submit" class="btn btn-primary">
+          <i class="fas fa-upload"></i> Upload Notes
+        </button>
+      </div>
+    </form>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Campus Connect. All rights reserved.</p>
+  </footer>
+
+  <script>
+    // Tags functionality
+    const tagsInput = document.getElementById('tagsInput');
+    const tagInputField = document.getElementById('tagInputField');
+    const tags = [];
+
+    tagInputField.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter' || e.key === ',') {
+        e.preventDefault();
+        addTag(this.value.trim());
+        this.value = '';
+      }
+    });
+
+    tagInputField.addEventListener('blur', function() {
+      if (this.value.trim()) {
+        addTag(this.value.trim());
+        this.value = '';
+      }
+    });
+
+    function addTag(tagText) {
+      if (tagText && !tags.includes(tagText) && tags.length < 10) {
+        tags.push(tagText);
+        
+        const tagElement = document.createElement('span');
+        tagElement.className = 'tag-item';
+        tagElement.innerHTML = `
+          ${tagText}
+          <span class="tag-remove" onclick="removeTag('${tagText}', this.parentElement)">&times;</span>
+        `;
+        
+        tagsInput.insertBefore(tagElement, tagInputField);
+        updatePreview();
+      }
+    }
+
+    function removeTag(tagText, element) {
+      const index = tags.indexOf(tagText);
+      if (index > -1) {
+        tags.splice(index, 1);
+        element.remove();
+        updatePreview();
+      }
+    }
+
+    // File upload functionality
+    const fileInput = document.getElementById('fileInput');
+    const fileLabel = document.getElementById('fileLabel');
+    const fileInfo = document.getElementById('fileInfo');
+
+    fileInput.addEventListener('change', function(e) {
+      const file = e.target.files[0];
+      if (file) {
+        fileLabel.classList.add('has-file');
+        fileLabel.innerHTML = `
+          <i class="fas fa-check-circle"></i>
+          <div>
+            <div style="font-weight: 600;">${file.name}</div>
+            <div style="font-size: 12px; opacity: 0.7;">Click to change file</div>
+          </div>
+        `;
+        
+        fileInfo.style.display = 'block';
+        fileInfo.innerHTML = `
+          <strong>File Details:</strong><br>
+          Name: ${file.name}<br>
+          Size: ${(file.size / (1024 * 1024)).toFixed(2)} MB<br>
+          Type: ${file.type || 'Unknown'}
+        `;
+        
+        updatePreview();
+      }
+    });
+
+    // Drag and drop functionality
+    ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+      fileLabel.addEventListener(eventName, preventDefaults, false);
+    });
+
+    function preventDefaults(e) {
+      e.preventDefault();
+      e.stopPropagation();
+    }
+
+    ['dragenter', 'dragover'].forEach(eventName => {
+      fileLabel.addEventListener(eventName, highlight, false);
+    });
+
+    ['dragleave', 'drop'].forEach(eventName => {
+      fileLabel.addEventListener(eventName, unhighlight, false);
+    });
+
+    function highlight(e) {
+      fileLabel.style.background = '#e8f1f6';
+      fileLabel.style.borderColor = '#156b8a';
+    }
+
+    function unhighlight(e) {
+      if (!fileLabel.classList.contains('has-file')) {
+        fileLabel.style.background = '#f8f9fa';
+        fileLabel.style.borderColor = '#1e3d58';
+      }
+    }
+
+    fileLabel.addEventListener('drop', handleDrop, false);
+
+    function handleDrop(e) {
+      const dt = e.dataTransfer;
+      const files = dt.files;
+      fileInput.files = files;
+      fileInput.dispatchEvent(new Event('change'));
+    }
+
+    // Preview functionality
+    const previewSection = document.getElementById('previewSection');
+    const previewTitle = document.getElementById('previewTitle');
+    const previewDescription = document.getElementById('previewDescription');
+    const previewSubject = document.getElementById('previewSubject');
+    const previewTags = document.getElementById('previewTags');
+    const previewFileType = document.getElementById('previewFileType');
+    const previewFileSize = document.getElementById('previewFileSize');
+
+    // Subject badge configurations
+    const subjectConfig = {
+      cse: { icon: 'fas fa-code', class: 'cse', text: 'CSE' },
+      ece: { icon: 'fas fa-bolt', class: 'ece', text: 'ECE' },
+      me: { icon: 'fas fa-cog', class: 'me', text: 'ME' },
+      ce: { icon: 'fas fa-building', class: 'ce', text: 'CE' },
+      eee: { icon: 'fas fa-plug', class: 'eee', text: 'EEE' },
+      other: { icon: 'fas fa-book', class: 'other', text: 'OTHER' }
+    };
+
+    function updatePreview() {
+      const title = document.getElementById('noteTitle').value;
+      const description = document.getElementById('description').value;
+      const subject = document.getElementById('subject').value;
+      const file = fileInput.files[0];
+
+      if (title || description || subject || file || tags.length > 0) {
+        previewSection.style.display = 'block';
+        
+        previewTitle.textContent = title || 'Note Title';
+        previewDescription.textContent = description || 'Note description will appear here...';
+        
+        if (subject && subjectConfig[subject]) {
+          const config = subjectConfig[subject];
+          previewSubject.className = `subject-badge ${config.class}`;
+          previewSubject.innerHTML = `<i class="${config.icon}"></i><span>${config.text}</span>`;
+        }
+        
+        previewTags.innerHTML = '';
+        tags.forEach(tag => {
+          const tagElement = document.createElement('span');
+          tagElement.className = 'tag';
+          tagElement.textContent = tag;
+          previewTags.appendChild(tagElement);
+        });
+        
+        if (file) {
+          const extension = file.name.split('.').pop().toUpperCase();
+          previewFileType.textContent = extension;
+          previewFileSize.textContent = (file.size / (1024 * 1024)).toFixed(2);
+        }
+      } else {
+        previewSection.style.display = 'none';
+      }
+    }
+
+    // Form validation and submission
+    document.getElementById('uploadForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      const formData = new FormData(this);
+      formData.append('tags', JSON.stringify(tags));
+      
+      // Simulate upload process
+      const submitBtn = this.querySelector('button[type="submit"]');
+      const originalText = submitBtn.innerHTML;
+      
+      submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Uploading...';
+      submitBtn.disabled = true;
+      
+      setTimeout(() => {
+        alert('Notes uploaded successfully! You will be redirected to the notes page.');
+        window.location.href = 'notes.html';
+      }, 2000);
+    });
+
+    // Real-time preview updates
+    ['noteTitle', 'description', 'subject'].forEach(id => {
+      document.getElementById(id).addEventListener('input', updatePreview);
+    });
+
+    // Animation for page elements
+    const faders = document.querySelectorAll('.fade-in');
+    const appearOptions = {
+      threshold: 0.2,
+      rootMargin: "0px 0px -100px 0px"
+    };
+
+    const appearOnScroll = new IntersectionObserver(function(entries, observer) {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      });
+    }, appearOptions);
+
+    faders.forEach(fader => {
+      appearOnScroll.observe(fader);
+    });
+  </script>
+</body>
+</html>

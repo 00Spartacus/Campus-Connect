@@ -1,0 +1,595 @@
+/* upload_notes.css */
+
+/* Inherit general styles from notes.css if desired, or copy necessary resets */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #f8f9fa;
+  color: #333;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+header {
+  background-color: #1e3d58;
+  padding: 20px 0;
+  color: white;
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  transition: transform 0.3s ease;
+}
+
+.logo img {
+  border-radius: 25%;
+  height: 40px;
+  width: auto;
+  transition: transform 0.5s ease;
+}
+
+.logo-link:hover .logo img {
+  transform: rotate(360deg);
+}
+
+.logo-link {
+  text-decoration: none;
+  color: inherit;
+}
+
+.auth-buttons {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.auth-buttons button {
+  background-color: #ffffff;
+  color: #1e3d58;
+  padding: 10px 20px;
+  border: none;
+  font-size: 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* Added shadow */
+}
+
+.auth-buttons button:hover {
+  background-color: #e0e0e0;
+  transform: translateY(-3px) scale(1.02); /* Increased translateY and added scale */
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15); /* Enhanced shadow on hover */
+}
+
+.auth-buttons i {
+  font-size: 14px;
+}
+
+.auth-buttons a {
+  text-decoration: none;
+}
+
+/* Page Header */
+.page-header {
+  background: linear-gradient(135deg, #1e3d58 0%, #156b8a 100%);
+  color: white;
+  padding: 60px 0;
+  text-align: center;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1); /* Added shadow */
+}
+
+.page-header h2 {
+  font-size: 36px;
+  font-weight: 700;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.2); /* Added text shadow */
+}
+
+.page-header p {
+  font-size: 18px;
+  opacity: 0.9;
+}
+
+/* Upload Form */
+.upload-form {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.1); /* Enhanced shadow */
+  padding: 30px;
+  margin: 30px 0;
+  border: 1px solid #e0e0e0; /* Changed border color for consistency */
+}
+
+.form-group {
+  margin-bottom: 25px;
+}
+
+.form-group label {
+  display: block;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 8px;
+  font-size: 14px;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  padding: 12px 15px;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  font-size: 14px;
+  transition: all 0.3s ease;
+  font-family: inherit;
+  box-shadow: inset 0 1px 3px rgba(0,0,0,0.05); /* Added subtle inner shadow */
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: #1e3d58;
+  box-shadow: 0 0 0 4px rgba(30, 61, 88, 0.2), inset 0 1px 3px rgba(0,0,0,0.05); /* Enhanced focus shadow */
+}
+
+.form-group textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.file-upload {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+}
+
+.file-input {
+  position: absolute;
+  left: -9999px;
+}
+
+.file-label {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 40px 20px;
+  border: 2px dashed #1e3d58;
+  border-radius: 8px;
+  background: #f8f9fa;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-align: center;
+  color: #1e3d58;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05); /* Added shadow */
+}
+
+.file-label:hover {
+  background: #e8f1f6;
+  border-color: #156b8a;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Enhanced shadow on hover */
+}
+
+.file-label.has-file {
+  background: #e8f1f6;
+  border-color: #28a745;
+  color: #28a745;
+  box-shadow: 0 2px 5px rgba(40,167,69,0.2); /* Green shadow for has-file */
+}
+
+.file-info {
+  margin-top: 10px;
+  padding: 10px;
+  background: #e8f1f6;
+  border-radius: 5px;
+  font-size: 13px;
+  color: #1e3d58;
+  display: none;
+  border: 1px solid #d4e3ed; /* Added border */
+}
+
+.tags-input {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  min-height: 40px;
+  padding: 8px;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  cursor: text;
+  background-color: #ffffff; /* Explicit background */
+  box-shadow: inset 0 1px 3px rgba(0,0,0,0.05); /* Added subtle inner shadow */
+}
+
+.tags-input:focus-within {
+  border-color: #1e3d58;
+  box-shadow: 0 0 0 4px rgba(30, 61, 88, 0.2), inset 0 1px 3px rgba(0,0,0,0.05); /* Enhanced focus shadow */
+}
+
+.tag-item {
+  background: #1e3d58;
+  color: white;
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1); /* Added shadow to tags */
+}
+
+.tag-remove {
+  cursor: pointer;
+  opacity: 0.8; /* Slightly less opaque */
+  transition: opacity 0.2s ease; /* Smooth transition */
+}
+
+.tag-remove:hover {
+  opacity: 1;
+  color: #ffdddd; /* Lighter red on hover */
+}
+
+.tag-input {
+  border: none;
+  outline: none;
+  flex: 1;
+  min-width: 100px;
+  font-size: 14px;
+  background: transparent; /* Ensure it's transparent */
+}
+
+.form-actions {
+  display: flex;
+  gap: 15px;
+  justify-content: flex-end;
+  margin-top: 30px;
+  padding-top: 20px;
+  border-top: 1px solid #e0e0e0;
+}
+
+.btn {
+  padding: 12px 25px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* Added shadow */
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, #1e3d58 0%, #156b8a 100%); /* Added gradient */
+  color: white;
+}
+
+.btn-primary:hover {
+  background: linear-gradient(135deg, #156b8a 0%, #1e3d58 100%); /* Reversed gradient on hover */
+  transform: translateY(-3px) scale(1.02); /* Enhanced hover effect */
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15); /* Enhanced shadow on hover */
+}
+
+.btn-secondary {
+  background: linear-gradient(135deg, #6c757d 0%, #495057 100%); /* Added gradient */
+  color: white;
+}
+
+.btn-secondary:hover {
+  background: linear-gradient(135deg, #495057 0%, #6c757d 100%); /* Reversed gradient on hover */
+  transform: translateY(-3px) scale(1.02); /* Enhanced hover effect */
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15); /* Enhanced shadow on hover */
+}
+
+.preview-section {
+  background: #f8f9fa;
+  border-radius: 8px;
+  padding: 20px;
+  margin-top: 20px;
+  border: 1px solid #e0e0e0;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05); /* Added shadow */
+}
+
+.preview-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 15px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.note-preview {
+  background: white;
+  border-radius: 8px;
+  border: 1px solid #e0e0e0;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05); /* Added shadow to preview card */
+}
+
+/* Note Preview Specific Styles (copied from notes.css for standalone preview) */
+.note-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 20px;
+  background: #f8f9fa;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.subject-badge {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  color: white;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1); /* Added shadow */
+}
+
+.subject-badge.cse {
+  background: linear-gradient(45deg, #007bff, #0056b3);
+}
+
+.subject-badge.ece {
+  background: linear-gradient(45deg, #28a745, #1e7e34);
+}
+
+.subject-badge.me {
+  background: linear-gradient(45deg, #fd7e14, #e55100);
+}
+
+.subject-badge.ce {
+  background: linear-gradient(45deg, #6c757d, #495057);
+}
+
+.subject-badge.eee {
+  background: linear-gradient(45deg, #dc3545, #bd2130);
+}
+
+.owner-badge {
+  background: #e8f1f6;
+  color: #1e3d58;
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 11px;
+  font-weight: 600;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05); /* Added shadow */
+}
+
+.note-content {
+  padding: 20px;
+  flex-grow: 1;
+}
+
+.note-content h3 {
+  font-size: 18px;
+  color: #333;
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+
+.note-content p {
+  color: #666;
+  line-height: 1.5;
+  margin-bottom: 15px;
+  font-size: 14px;
+}
+
+.note-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin-bottom: 15px;
+  font-size: 12px;
+  color: #888;
+}
+
+.note-meta span {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.note-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.tag {
+  background: #e8f1f6;
+  color: #1e3d58;
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 11px;
+  font-weight: 500;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05); /* Added shadow */
+}
+
+/* Footer */
+footer {
+  background-color: #1e3d58;
+  color: white;
+  text-align: center;
+  padding: 30px 0;
+  margin-top: 60px;
+  box-shadow: 0 -4px 10px rgba(0,0,0,0.1); /* Added shadow */
+}
+
+footer p {
+  font-size: 14px;
+  opacity: 0.8;
+}
+
+/* Animations */
+.fade-in {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.6s ease;
+}
+
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .container {
+    padding: 0 15px;
+  }
+  
+  nav {
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .auth-buttons {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  .page-header h2 {
+    font-size: 28px;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .upload-form {
+    padding: 20px;
+  }
+  
+  .form-row {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+  
+  .form-actions {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 480px) {
+  .page-header {
+    padding: 40px 0;
+  }
+  
+  .page-header h2 {
+    font-size: 24px;
+  }
+  
+  .page-header p {
+    font-size: 16px;
+  }
+  
+  .btn {
+    padding: 10px 15px;
+    font-size: 13px;
+  }
+  
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    padding: 10px 12px;
+    font-size: 13px;
+  }
+  
+  .note-content h3 {
+    font-size: 16px;
+  }
+  
+  .note-content p {
+    font-size: 13px;
+  }
+}
+
+/* Loading states and hover effects */
+.note-preview {
+  position: relative;
+  overflow: hidden;
+}
+
+.note-preview::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+  transition: left 0.5s;
+}
+
+.note-preview:hover::before {
+  left: 100%;
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Focus states for accessibility */
+button:focus,
+input:focus,
+select:focus,
+textarea:focus {
+  outline: 2px solid #1e3d58;
+  outline-offset: 2px;
+}
+
+/* Print styles */
+@media print {
+  .auth-buttons,
+  .form-actions,
+  footer {
+    display: none;
+  }
+  
+  .upload-form {
+    box-shadow: none;
+    border: 1px solid #ccc;
+  }
+  
+  .page-header {
+    background: none;
+    color: #333;
+  }
+}
